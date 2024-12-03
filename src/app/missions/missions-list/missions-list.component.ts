@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FetchMissionsService } from '../../services/fetch-missions.service';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-missions-list',
   standalone: true,
-  imports: [],
+  imports: [RouterModule, CommonModule],
   templateUrl: './missions-list.component.html',
   styleUrl: './missions-list.component.css',
 })

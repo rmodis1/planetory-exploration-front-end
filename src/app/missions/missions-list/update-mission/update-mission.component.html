@@ -1,0 +1,92 @@
+<div class="container mt-5">
+    <h2>Update Mission</h2>
+    @if (missionForm) {
+      <form [formGroup]="missionForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Mission Name:</label>
+          <input 
+            type="text" 
+            id="name" 
+            formControlName="name" 
+            class="form-control" 
+            [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+          >
+          @if (name.invalid && (name.dirty || name.touched)) {
+            <div class="invalid-feedback">
+              Mission name is required.
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="date" class="form-label">Date:</label>
+          <input 
+            type="date" 
+            id="date" 
+            formControlName="date" 
+            class="form-control"
+            [class.is-invalid]="date.invalid && (date.dirty || date.touched)"
+          >
+          @if (date.invalid && (date.dirty || date.touched)) {
+            <div class="invalid-feedback">
+              Date is required.
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <textarea 
+            id="description" 
+            formControlName="description" 
+            class="form-control"
+            [class.is-invalid]="description.invalid && (description.dirty || description.touched)"
+          ></textarea>
+          @if (description.invalid && (description.dirty || description.touched)) {
+            <div class="invalid-feedback">
+              Description is required.
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="planetId" class="form-label">Planet ID:</label>
+          <input 
+            type="number" 
+            id="planetId" 
+            formControlName="planetId" 
+            class="form-control"
+            [class.is-invalid]="planetId.invalid && (planetId.dirty || planetId.touched)"
+          >
+          @if (planetId.invalid && (planetId.dirty || planetId.touched)) {
+            <div class="invalid-feedback">
+              Planet ID is required.
+            </div>
+          }
+        </div>
+
+        @if (submitError) {
+          <div class="alert alert-danger">
+            {{ submitError }}
+          </div>
+        }
+
+        <button 
+          type="submit" 
+          class="btn btn-primary me-2" 
+          [disabled]="missionForm.invalid || isSubmitting"
+        >
+          {{ isSubmitting ? 'Updating...' : 'Update Mission' }}
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-secondary" 
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+      </form>
+    } @else {
+      <p>Loading mission details...</p>
+    }
+  </div>
