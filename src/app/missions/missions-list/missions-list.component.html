@@ -1,0 +1,30 @@
+<div class="container" style="margin-top: 50px">
+    <h1>Completed Missions</h1>
+
+@for(mission of missions.data; track $index) {
+      <h2>Mission: {{ mission.name }}</h2>
+      <p><strong>Date:</strong> {{ mission.date }}</p>
+      <p><strong>Description:</strong> {{ mission.description }}</p>
+<!--     
+      <h3>Planet Details</h3>
+      <ul>
+        <li><strong>Name:</strong> {{ mission.planet.name }}</li>
+        <li><strong>Type:</strong> {{ mission.planet.type }}</li>
+        <li><strong>Climate:</strong> {{ mission.planet.climate }}</li>
+        <li><strong>Terrain:</strong> {{ mission.planet.terrain }}</li>
+        <li><strong>Population:</strong> {{ mission.planet.population }}</li>
+      </ul> -->
+    }
+</div>
+    
+      <!-- <h3>Discoveries</h3>
+      <ul>
+        @for (discovery of mission.discoveries; track discovery.id) {
+        <li>
+          <strong>{{ discovery.name }}</strong
+          >: {{ discovery.description }}
+          <br />
+          <em>Location:</em> {{ discovery.location }}
+        </li>
+        }
+      </ul> -->
