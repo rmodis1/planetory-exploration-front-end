@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Mission } from '../../../mission';
+import { Mission } from '../../../interfaces/mission';
 import { FetchPlanetsService } from '../../../services/fetch-planets.service';
 
 @Component({

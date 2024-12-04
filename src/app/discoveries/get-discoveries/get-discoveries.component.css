@@ -1,0 +1,67 @@
+.container {
+  padding: 20px;
+}
+
+.mission-select {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.error-message {
+  color: #dc3545;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  background-color: #f8d7da;
+}
+
+.discoveries-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.discovery-card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.discovery-card h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.discovery-card .date {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.discovery-card .description {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.no-discoveries {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
+}

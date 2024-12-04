@@ -8,9 +8,9 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Mission } from '../../../mission';
+import { Mission } from '../../../interfaces/mission';
 import { FetchPlanetsService } from '../../../services/fetch-planets.service';
-import { Planet } from '../../../planet';
+import { Planet } from '../../../interfaces/planet';
 
 @Component({
   selector: 'app-update-mission',

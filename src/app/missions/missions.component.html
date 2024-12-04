@@ -1,5 +1,4 @@
 <div class="container mt-5">
-  <router-outlet></router-outlet>
   <h2 class="mb-2"><a routerLink="/missions/list" class="nav-link" routerLinkActive="router-link-active">See Previous Missions</a></h2>
   <h2 class="mt-4">Create New Mission</h2>
   <form [formGroup]="missionForm" (ngSubmit)="onSubmit()">

@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { catchError, of, tap } from 'rxjs';
-import { Mission } from '../mission';
+import { Mission } from '../interfaces/mission';
 import { FetchMissionsService } from '../services/fetch-missions.service';
 import { FetchPlanetsService } from '../services/fetch-planets.service';
 import { MissionsListComponent } from "./missions-list/missions-list.component";
@@ -95,6 +95,7 @@ export class MissionsComponent implements OnInit {
         date: this.missionForm.value.date,
         description: this.missionForm.value.description,
         planetId: this.missionForm.value.planetId,
+        id: ''
       };
   
       this.http

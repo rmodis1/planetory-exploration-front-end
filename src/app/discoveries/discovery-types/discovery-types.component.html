@@ -1,0 +1,23 @@
+<div class="container" style="margin-top: 50px">
+  <h2>Discovery Types</h2>
+  <div class="form-group">
+    <label for="discoverySelect">Select a Discovery Type:</label>
+    <select class="form-control" [formControl]="discoveryControl">
+      @for (discovery of discoveries.data; track discovery.id) {
+      <option  [value]="discovery.id">
+        {{ discovery.name }}
+      </option>
+    }
+    </select>
+  </div>
+
+  @if (discoveryDetails) {
+  <div>
+    <h3>Discovery Details</h3>
+    <ul>
+      <li><strong>Name:</strong> {{ discoveryDetails.name }}</li>
+      <li><strong>Description:</strong> {{ discoveryDetails.description }}</li>
+    </ul>
+  </div>
+  }
+</div>

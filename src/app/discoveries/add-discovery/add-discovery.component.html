@@ -1,0 +1,99 @@
+<div class="container">
+    <h2>Add New Discovery</h2>
+  
+    @if (errorMessage) {
+      <div class="error-message">{{ errorMessage }}</div>
+    }
+  
+    <form [formGroup]="discoveryForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          class="form-control"
+        >
+        @if (discoveryForm.get('name')?.invalid && discoveryForm.get('name')?.touched) {
+          <div class="error-message">Name is required</div>
+        }
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          class="form-control"
+          rows="4"
+        ></textarea>
+        @if (discoveryForm.get('description')?.invalid && discoveryForm.get('description')?.touched) {
+          <div class="error-message">Description is required</div>
+        }
+      </div>
+  
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input
+          id="location"
+          type="text"
+          formControlName="location"
+          class="form-control"
+        >
+        @if (discoveryForm.get('location')?.invalid && discoveryForm.get('location')?.touched) {
+          <div class="error-message">Location is required</div>
+        }
+      </div>
+  
+      <div class="form-group">
+        <label for="missionId">Mission</label>
+        <select
+          id="missionId"
+          formControlName="missionId"
+          class="form-control"
+        >
+          <option value="">Select a mission...</option>
+          @for (mission of missions; track mission.id) {
+            <option [value]="mission.id">{{ mission.name }}</option>
+          }
+        </select>
+        @if (discoveryForm.get('missionId')?.invalid && discoveryForm.get('missionId')?.touched) {
+          <div class="error-message">Mission selection is required</div>
+        }
+      </div>
+  
+      <div class="form-group">
+        <label for="discoveryTypeId">Discovery Type</label>
+        <select
+          id="discoveryTypeId"
+          formControlName="discoveryTypeId"
+          class="form-control"
+        >
+          <option value="">Select a discovery type...</option>
+          @for (type of discoveryTypes; track type.id) {
+            <option [value]="type.id">{{ type.name }}</option>
+          }
+        </select>
+        @if (discoveryForm.get('discoveryTypeId')?.invalid && discoveryForm.get('discoveryTypeId')?.touched) {
+          <div class="error-message">Discovery type selection is required</div>
+        }
+      </div>
+  
+      <div class="button-group">
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="discoveryForm.invalid || isSubmitting"
+        >
+          {{ isSubmitting ? 'Creating...' : 'Create Discovery' }}
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-secondary" 
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
