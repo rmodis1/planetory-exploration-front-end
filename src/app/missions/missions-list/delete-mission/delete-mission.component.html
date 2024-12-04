@@ -16,9 +16,9 @@
             
             <div class="mission-details mt-3">
               <p><strong>Mission Name:</strong> {{ mission.name }}</p>
-              <p><strong>Date:</strong> {{ mission.date | date:'mediumDate' }}</p>
+              <p><strong>Date:</strong> {{ mission.date | date:'longDate' }}</p>
               <p><strong>Description:</strong> {{ mission.description }}</p>
-              <p><strong>Planet ID:</strong> {{ mission.planetId }}</p>
+              <p><strong>Planet:</strong> {{ planetName }}</p>
             </div>
             
             <div class="mt-4">

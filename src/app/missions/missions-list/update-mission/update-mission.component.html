@@ -50,20 +50,25 @@
         </div>
 
         <div class="mb-3">
-          <label for="planetId" class="form-label">Planet ID:</label>
-          <input 
-            type="number" 
-            id="planetId" 
-            formControlName="planetId" 
-            class="form-control"
-            [class.is-invalid]="planetId.invalid && (planetId.dirty || planetId.touched)"
-          >
-          @if (planetId.invalid && (planetId.dirty || planetId.touched)) {
-            <div class="invalid-feedback">
-              Planet ID is required.
-            </div>
-          }
-        </div>
+            <label for="planetId">Planet</label>
+            <select 
+              id="planetId"
+              formControlName="planetId"
+              class="form-control"
+            >
+              <option value="">Select a planet</option>
+              @for (planet of planets; track planet.id) {
+                <option [value]="planet.id">{{planet.name}}</option>
+              }
+            </select>
+            @if (planetId.invalid && (planetId.dirty || planetId.touched)) {
+              <div class="error-message">
+                @if (planetId.errors?.['required']) {
+                  <div>Planet selection is required</div>
+                }
+              </div>
+            }
+          </div>
 
         @if (submitError) {
           <div class="alert alert-danger">

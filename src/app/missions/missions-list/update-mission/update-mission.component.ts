@@ -9,6 +9,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Mission } from '../../../mission';
+import { FetchPlanetsService } from '../../../services/fetch-planets.service';
+import { Planet } from '../../../planet';
 
 @Component({
   selector: 'app-update-mission',
@@ -22,18 +24,33 @@ export class UpdateMissionComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private http = inject(HttpClient);
+  private planetService = inject(FetchPlanetsService)
 
   missionForm: FormGroup | null = null;
   isSubmitting = false;
   submitError: string | null = null;
+  planets: Planet[] = [];
 
   ngOnInit() {
-    // Subscribe to route params to handle navigation between different missions
+    this.fetchPlanets();
+
     this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
         this.fetchMission(id);
       }
+    });
+  }
+
+  private fetchPlanets() {
+    this.planetService.getPlanets().subscribe({
+      next: (response) => {
+        this.planets = response.data;
+      },
+      error: (error) => {
+        console.error('Error fetching planets', error);
+        this.submitError = 'Failed to load planets';
+      },
     });
   }
 

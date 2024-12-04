@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Mission } from '../../../mission';
+import { FetchPlanetsService } from '../../../services/fetch-planets.service';
 
 @Component({
   selector: 'app-delete-mission',
@@ -15,7 +16,9 @@ export class DeleteMissionComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private http = inject(HttpClient);
-  
+  private planetService = inject(FetchPlanetsService);
+  planetName: string = '';
+
 
   mission: Mission | null = null;
   loading = true;
@@ -37,6 +40,7 @@ export class DeleteMissionComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.mission = response.data;
+          this.fetchPlanetName(this.mission.planetId);
           this.loading = false;
         },
         error: (error) => {
@@ -45,6 +49,19 @@ export class DeleteMissionComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  private fetchPlanetName(planetId: string) {
+    this.planetService.getPlanets().subscribe({
+      next: (response) => {
+        const planet = response.data.find((p: any) => p.id === planetId);
+        this.planetName = planet ? planet.name : 'Unknown Planet';
+      },
+      error: (error) => {
+        console.error('Error fetching planet data', error);
+        this.planetName = 'Unknown Planet';
+      },
+    });
   }
 
   confirmDelete() {
