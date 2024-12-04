@@ -73,4 +73,10 @@ export class GetDiscoveriesComponent implements OnInit {
       state: { discovery }
     });
   }
+
+  onDeleteDiscovery(discovery: Discovery) {
+    this.router.navigate(['/discoveries/delete', discovery.id], {
+      state: { discovery }
+    });
+  }
 }

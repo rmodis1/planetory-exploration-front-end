@@ -11,6 +11,7 @@ import { DiscoveriesComponent } from './discoveries/discoveries.component';
 import { AddDiscoveryComponent } from './discoveries/add-discovery/add-discovery.component';
 import { DiscoveryTypesComponent } from './discoveries/discovery-types/discovery-types.component';
 import { UpdateDiscoveryComponent } from './discoveries/update-discovery/update-discovery.component';
+import { DeleteDiscoveryComponent } from './discoveries/delete-discovery/delete-discovery.component';
 
 export const routes: Routes = [
     {path: '', component: AppComponent},
@@ -25,7 +26,7 @@ export const routes: Routes = [
     {path: 'discoveries/discovery-types', component: DiscoveryTypesComponent},
     // {path: 'discoveries/:id', component: GetDiscoveryComponent},
     {path: 'discoveries/update/:id', component: UpdateDiscoveryComponent},
-    // {path: 'discoveries/:id/delete', component: DeleteDiscoveryComponent},
+    {path: 'discoveries/delete/:id', component: DeleteDiscoveryComponent},
     {path: 'planets', component: PlanetsComponent},
     {path: '**', component: AppComponent, pathMatch: 'full'},
 ];

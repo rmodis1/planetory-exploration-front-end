@@ -30,15 +30,23 @@
             <h3>{{ discovery.name }}</h3>
             <p class="location">{{ discovery.location }}</p>
             <p class="description">{{ discovery.description }}</p>
-          </div>
+            <!-- Buttons -->
+          <!--Update button -->
           <div class="discovery-actions">
             <button 
               (click)="onUpdateDiscovery(discovery)"
-              class="update-button"
+              class="btn btn-primary"
             >
               Update
             </button>
-            <!-- Add any other action buttons here -->
+          <!-- Delete button -->
+            <button 
+            (click)="onDeleteDiscovery(discovery)"
+            class="btn btn-danger"
+          >
+            Delete
+          </button>
+          </div>
           </div>
         }
       </div>

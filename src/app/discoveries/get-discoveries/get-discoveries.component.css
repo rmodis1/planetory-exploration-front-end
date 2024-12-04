@@ -35,33 +35,37 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-.discovery-card {
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.discovery-card h3 {
-  margin: 0 0 10px 0;
-  color: #333;
-}
-
-.discovery-card .date {
-  color: #666;
-  font-size: 0.9em;
-  margin-bottom: 10px;
-}
-
-.discovery-card .description {
-  margin: 0;
-  line-height: 1.4;
-}
-
 .no-discoveries {
   text-align: center;
   padding: 40px;
   color: #666;
   font-style: italic;
+}
+
+.discovery-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.discovery-card h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.discovery-card .location,
+.discovery-card .description {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.discovery-actions {
+  display: flex;
+  gap: 10px; 
+  margin-top: 15px;
 }

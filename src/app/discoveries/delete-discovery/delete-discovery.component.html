@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="delete-confirmation">
+      <h2>Delete Discovery</h2>
+      
+      @if (currentDiscovery) {
+        <div class="confirmation-content">
+          <p>Are you sure you want to delete the following discovery?</p>
+          
+          <div class="discovery-details">
+            <h3>{{ currentDiscovery.name }}</h3>
+            <p>{{ currentDiscovery.description }}</p>
+            <p><strong>Location:</strong> {{ currentDiscovery.location }}</p>
+          </div>
+          
+          @if (errorMessage) {
+            <div class="error-message">
+              {{ errorMessage }}
+            </div>
+          }
+  
+          <div class="button-group">
+            <button 
+              (click)="onConfirmDelete()" 
+              [disabled]="isDeleting"
+              class="delete-button"
+            >
+              {{ isDeleting ? 'Deleting...' : 'Confirm Delete' }}
+            </button>
+            <button 
+              (click)="onCancel()"
+              [disabled]="isDeleting"
+              class="cancel-button"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
