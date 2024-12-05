@@ -114,23 +114,57 @@
               <i class="fas fa-list text-primary me-2"></i>
               Discovery Type
             </label>
-            <select
-              id="discoveryTypeId"
-              formControlName="discoveryTypeId"
-              class="form-select custom-select"
-              [class.is-invalid]="discoveryForm.get('discoveryTypeId')?.invalid && discoveryForm.get('discoveryTypeId')?.touched"
-            >
-              <option value="">Select a discovery type...</option>
-              @for (type of discoveryTypes; track type.id) {
-                <option [value]="type.id">{{ type.name }}</option>
-              }
-            </select>
-            @if (discoveryForm.get('discoveryTypeId')?.invalid && discoveryForm.get('discoveryTypeId')?.touched) {
-              <div class="invalid-feedback">
-                Discovery type selection is required
+            <div class="select-wrapper">
+              <!-- Hidden actual select for form control -->
+              <select
+                id="discoveryTypeId"
+                formControlName="discoveryTypeId"
+                class="visually-hidden"
+              >
+                <option value="">Select a discovery type...</option>
+                @for (type of discoveryTypes; track type.id) {
+                  <option [value]="type.id">{{ type.name }}</option>
+                }
+              </select>
+          
+              <!-- Custom dropdown -->
+              <div class="custom-select" (click)="toggleDropdown()">
+                <div class="selected-option">
+                  {{ selectedTypeName || 'Select a discovery type...' }}
+                </div>
+                @if (isDropdownOpen) {
+                  <div class="options-list">
+                    @for (type of discoveryTypes; track type.id) {
+                      <div 
+                        class="option"
+                        (mouseenter)="showTypeDetails(type, $event)"
+                        (mouseleave)="hideTypeDetails()"
+                        (click)="selectOption(type)"
+                      >
+                        {{ type.name }}
+                      </div>
+                    }
+                  </div>
+                }
+          
+                <!-- Tooltip -->
+                @if (activeTooltip && discoveryTypeDetails) {
+                  <div class="type-tooltip">
+                    <h4>{{ discoveryTypeDetails.name }}</h4>
+                    <p>{{ discoveryTypeDetails.description }}</p>
+                  </div>
+                }
               </div>
-            }
+            </div>
           </div>
+          
+              <!-- @if (discoveryForm.get('discoveryTypeId')?.invalid && discoveryForm.get('discoveryTypeId')?.touched) {
+                <div class="invalid-feedback">
+                  Discovery type selection is required
+                </div>
+              }
+            </div>
+          </div> -->
 
           <!-- Button Group -->
           <div class="button-group">

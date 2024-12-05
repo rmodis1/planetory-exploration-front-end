@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, HostListener } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
@@ -6,6 +6,7 @@ import { Mission } from '../../interfaces/mission';
 import { DiscoveryType } from '../../interfaces/discoveryType';
 import { DiscoveryTypeService } from '../../services/fetch-discovery-types.service';
 import { FetchMissionsService } from '../../services/fetch-missions.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-discovery',
@@ -26,6 +27,11 @@ export class AddDiscoveryComponent implements OnInit {
   discoveryTypes: DiscoveryType[] = [];
   isSubmitting = false;
   errorMessage: string | null = null;
+  discoveryTypeDetails: any = null;
+  isDropdownOpen = false;
+  selectedTypeName = '';
+  activeTooltip = false;
+  tooltipPosition = { top: 0, left: 0 };
 
   constructor() {
     this.discoveryForm = this.formBuilder.group({
@@ -103,4 +109,51 @@ export class AddDiscoveryComponent implements OnInit {
   onCancel() {
     this.router.navigate(['/discoveries/get-discoveries']);
   }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  showTypeDetails(type: any, event: MouseEvent) {
+    this.discoveryTypeDetails = type;
+    this.activeTooltip = true;
+
+  // Get the hovered option element
+  const optionElement = event.target as HTMLElement;
+  const rect = optionElement.getBoundingClientRect();
+  const dropdownWidth = optionElement.offsetWidth;
+  
+  // Position tooltip next to the hovered option
+  this.tooltipPosition = {
+    top: rect.top,
+    left: rect.left + dropdownWidth + 50 
+  };
+  // Check if tooltip would go off-screen to the right
+  const tooltipWidth = 250; // This should match your min-width in CSS
+  if (rect.left + dropdownWidth + tooltipWidth > window.innerWidth) {
+    // If it would go off-screen, position it to the left of the dropdown instead
+    this.tooltipPosition.left = rect.left - tooltipWidth - 20;
+  }
+
+  }
+
+  hideTypeDetails() {
+    this.activeTooltip = false;
+  }
+
+  selectOption(type: any) {
+    this.selectedTypeName = type.name;
+    this.discoveryForm.get('discoveryTypeId')?.setValue(type.id);
+    this.isDropdownOpen = false;
+  }
+
+  // Close dropdown when clicking outside
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const select = (event.target as HTMLElement).closest('.custom-select');
+    if (!select) {
+      this.isDropdownOpen = false;
+    }
+  }
 }
+

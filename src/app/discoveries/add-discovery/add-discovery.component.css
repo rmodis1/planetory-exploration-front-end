@@ -6,7 +6,11 @@
 
 /* Banner Styles */
 .banner-card {
-  background: linear-gradient(135deg, rgba(13, 110, 253, 0.1), rgba(102, 16, 242, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(13, 110, 253, 0.1),
+    rgba(102, 16, 242, 0.1)
+  );
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
@@ -163,7 +167,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -193,4 +198,82 @@
   .custom-btn-secondary {
     width: 100%;
   }
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.custom-select {
+  position: relative;
+  background-color: rgba(33, 37, 41, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.375rem;
+  color: white;
+  cursor: pointer;
+}
+
+.selected-option {
+  padding: 0.5rem 1rem;
+}
+
+.options-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(33, 37, 41, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.375rem;
+  margin-top: 0.25rem;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.option {
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s;
+}
+
+.option:hover {
+  background-color: rgba(13, 110, 253, 0.2);
+}
+
+.type-tooltip {
+  position: absolute;
+  background-color: rgba(33, 37, 41, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  min-width: 250px;
+  max-width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  pointer-events: none; 
+  transition: all 0.2s ease-out;
+  left: 30%;
+  margin-left: 10px;
+}
+
+.type-tooltip h4 {
+  color: #60a5fa;
+  margin-bottom: 0.5rem;
+}
+
+.type-tooltip p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
