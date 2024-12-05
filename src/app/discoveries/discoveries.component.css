@@ -1,14 +1,199 @@
-.nav-link {
-    color: #0056b3; /* Darker blue */
+.space-background {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    padding: 20px;
+  }
+  
+  /* Banner Styles */
+  .banner-card {
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.1), rgba(102, 16, 242, 0.1));
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .banner-content {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .banner-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .banner-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .banner-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  /* Navigation Card Styles */
+  .nav-card {
+    background-color: rgba(33, 37, 41, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .nav-section {
+    padding: 2rem;
+  }
+  
+  .space-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-radius: 0.5rem;
+    color: white;
     text-decoration: none;
-    transition: color 0.2s ease-in-out;
+    font-size: 1.25rem;
+    font-weight: 500;
+    transition: all 0.3s ease-out;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
-  .nav-link:hover {
-    color: #004085; /* Even darker blue on hover */
-    text-decoration: underline;
+  .discover-link {
+    color: #60a5fa;
   }
   
-  .nav-link:active {
-    color: #002752; /* Darkest blue on active */
+  .discover-link:hover {
+    background-color: rgba(96, 165, 250, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .create-link {
+    color: #10b981;
+  }
+  
+  .create-link:hover {
+    background-color: rgba(16, 185, 129, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .space-link.active {
+    border-color: currentColor;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+  
+  .arrow-icon {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease-out;
+  }
+  
+  .space-link:hover .arrow-icon {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .nav-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  
+  .divider-line {
+    height: 1px;
+    width: 100px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+  }
+  
+  .fas.fa-star {
+    animation: pulse 2s infinite;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .banner-content {
+      padding: 2rem 1rem;
+    }
+  
+    .banner-icon {
+      font-size: 2.5rem;
+    }
+  
+    .banner-title {
+      font-size: 2rem;
+    }
+  
+    .banner-text {
+      font-size: 1rem;
+    }
+  
+    .nav-section {
+      padding: 1rem;
+    }
+  
+    .space-link {
+      padding: 1rem;
+      font-size: 1.1rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+  
+    .arrow-icon {
+      display: none;
+    }
   }

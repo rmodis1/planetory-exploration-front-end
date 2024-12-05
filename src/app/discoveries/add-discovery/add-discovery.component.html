@@ -1,4 +1,163 @@
-<div class="container">
+<div class="space-background">
+  <div class="container py-5">
+    <!-- Banner Section -->
+    <div class="banner-card mb-4">
+      <div class="banner-content">
+        <div class="banner-icon">
+          <i class="fas fa-microscope text-primary"></i>
+        </div>
+        <h1 class="banner-title">Record New Discovery</h1>
+        <p class="banner-text">
+          Document your latest space findings. Each discovery contributes to our understanding 
+          of the vast cosmos and advances our mission of space exploration.
+        </p>
+      </div>
+    </div>
+
+    <div class="card form-card">
+      <div class="card-body">
+        @if (errorMessage) {
+          <div class="custom-alert-danger mb-4">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            {{ errorMessage }}
+          </div>
+        }
+
+        <form [formGroup]="discoveryForm" (ngSubmit)="onSubmit()">
+          <!-- Name Field -->
+          <div class="form-group mb-4">
+            <label for="name" class="form-label">
+              <i class="fas fa-signature text-primary me-2"></i>
+              Discovery Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              class="form-control custom-input"
+              [class.is-invalid]="discoveryForm.get('name')?.invalid && discoveryForm.get('name')?.touched"
+            >
+            @if (discoveryForm.get('name')?.invalid && discoveryForm.get('name')?.touched) {
+              <div class="invalid-feedback">
+                Name is required
+              </div>
+            }
+          </div>
+
+          <!-- Description Field -->
+          <div class="form-group mb-4">
+            <label for="description" class="form-label">
+              <i class="fas fa-file-alt text-primary me-2"></i>
+              Description
+            </label>
+            <textarea
+              id="description"
+              formControlName="description"
+              class="form-control custom-input"
+              rows="4"
+              [class.is-invalid]="discoveryForm.get('description')?.invalid && discoveryForm.get('description')?.touched"
+            ></textarea>
+            @if (discoveryForm.get('description')?.invalid && discoveryForm.get('description')?.touched) {
+              <div class="invalid-feedback">
+                Description is required
+              </div>
+            }
+          </div>
+
+          <!-- Location Field -->
+          <div class="form-group mb-4">
+            <label for="location" class="form-label">
+              <i class="fas fa-map-marker-alt text-primary me-2"></i>
+              Location
+            </label>
+            <input
+              id="location"
+              type="text"
+              formControlName="location"
+              class="form-control custom-input"
+              [class.is-invalid]="discoveryForm.get('location')?.invalid && discoveryForm.get('location')?.touched"
+            >
+            @if (discoveryForm.get('location')?.invalid && discoveryForm.get('location')?.touched) {
+              <div class="invalid-feedback">
+                Location is required
+              </div>
+            }
+          </div>
+
+          <!-- Mission Selection -->
+          <div class="form-group mb-4">
+            <label for="missionId" class="form-label">
+              <i class="fas fa-rocket text-primary me-2"></i>
+              Mission
+            </label>
+            <select
+              id="missionId"
+              formControlName="missionId"
+              class="form-select custom-select"
+              [class.is-invalid]="discoveryForm.get('missionId')?.invalid && discoveryForm.get('missionId')?.touched"
+            >
+              <option value="">Select a mission...</option>
+              @for (mission of missions; track mission.id) {
+                <option [value]="mission.id">{{ mission.name }}</option>
+              }
+            </select>
+            @if (discoveryForm.get('missionId')?.invalid && discoveryForm.get('missionId')?.touched) {
+              <div class="invalid-feedback">
+                Mission selection is required
+              </div>
+            }
+          </div>
+
+          <!-- Discovery Type Selection -->
+          <div class="form-group mb-4">
+            <label for="discoveryTypeId" class="form-label">
+              <i class="fas fa-list text-primary me-2"></i>
+              Discovery Type
+            </label>
+            <select
+              id="discoveryTypeId"
+              formControlName="discoveryTypeId"
+              class="form-select custom-select"
+              [class.is-invalid]="discoveryForm.get('discoveryTypeId')?.invalid && discoveryForm.get('discoveryTypeId')?.touched"
+            >
+              <option value="">Select a discovery type...</option>
+              @for (type of discoveryTypes; track type.id) {
+                <option [value]="type.id">{{ type.name }}</option>
+              }
+            </select>
+            @if (discoveryForm.get('discoveryTypeId')?.invalid && discoveryForm.get('discoveryTypeId')?.touched) {
+              <div class="invalid-feedback">
+                Discovery type selection is required
+              </div>
+            }
+          </div>
+
+          <!-- Button Group -->
+          <div class="button-group">
+            <button 
+              type="submit" 
+              class="btn custom-btn-primary"
+              [disabled]="discoveryForm.invalid || isSubmitting"
+            >
+              <i class="fas fa-save me-2"></i>
+              {{ isSubmitting ? 'Creating...' : 'Create Discovery' }}
+            </button>
+            <button 
+              type="button" 
+              class="btn custom-btn-secondary" 
+              (click)="onCancel()"
+            >
+              <i class="fas fa-times me-2"></i>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
     <h2>Add New Discovery</h2>
   
     @if (errorMessage) {
@@ -96,4 +255,4 @@
         </button>
       </div>
     </form>
-  </div>
+  </div> -->

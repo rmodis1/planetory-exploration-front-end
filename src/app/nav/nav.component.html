@@ -1,4 +1,56 @@
-<header>
+<header class="navbar-container">
+  <nav class="navbar navbar-expand-lg navbar-dark px-4">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center ms-2" href="/home">
+        <i class="fas fa-rocket me-2"></i>
+        Planetary Explorations
+      </a>
+      
+      <button 
+        class="navbar-toggler" 
+        type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a routerLink="/home" class="nav-link" routerLinkActive="active">
+              <i class="fas fa-home nav-icon"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/missions" class="nav-link" routerLinkActive="active">
+              <i class="fas fa-space-shuttle nav-icon"></i>
+              <span>Missions</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/planets" class="nav-link" routerLinkActive="active">
+              <i class="fas fa-globe nav-icon"></i>
+              <span>Planets</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/discoveries" class="nav-link" routerLinkActive="active">
+              <i class="fas fa-microscope nav-icon"></i>
+              <span>Discoveries</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- <header>
   <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="/home">Planetory Explorations</a>
     <div class="navbar-collapse show" id="navbarNav">
@@ -18,5 +70,5 @@
       </ul>
     </div>
   </nav>
-</header>
+</header> -->
 
