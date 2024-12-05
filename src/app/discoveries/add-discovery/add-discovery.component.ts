@@ -1,12 +1,11 @@
 import { Component, inject, OnInit, HostListener } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { Mission } from '../../interfaces/mission';
 import { DiscoveryType } from '../../interfaces/discoveryType';
 import { DiscoveryTypeService } from '../../services/fetch-discovery-types.service';
 import { FetchMissionsService } from '../../services/fetch-missions.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-discovery',
@@ -29,6 +28,8 @@ export class AddDiscoveryComponent implements OnInit {
   errorMessage: string | null = null;
   discoveryTypeDetails: any = null;
   isDropdownOpen = false;
+  isMissionDropdownOpen = false;
+  selectedMissionName = '';
   selectedTypeName = '';
   activeTooltip = false;
   tooltipPosition = { top: 0, left: 0 };
@@ -114,27 +115,24 @@ export class AddDiscoveryComponent implements OnInit {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
+  toggleMissionDropdown() {
+    this.isMissionDropdownOpen = !this.isMissionDropdownOpen;
+    // Close the other dropdown if it's open
+    if (this.isMissionDropdownOpen) {
+      this.isDropdownOpen = false;
+    }
+  }
+
+
+selectMission(mission: any) {
+  this.selectedMissionName = mission.name;
+  this.discoveryForm.get('missionId')?.setValue(mission.id);
+  this.isMissionDropdownOpen = false;
+}
+
   showTypeDetails(type: any, event: MouseEvent) {
     this.discoveryTypeDetails = type;
     this.activeTooltip = true;
-
-  // Get the hovered option element
-  const optionElement = event.target as HTMLElement;
-  const rect = optionElement.getBoundingClientRect();
-  const dropdownWidth = optionElement.offsetWidth;
-  
-  // Position tooltip next to the hovered option
-  this.tooltipPosition = {
-    top: rect.top,
-    left: rect.left + dropdownWidth + 50 
-  };
-  // Check if tooltip would go off-screen to the right
-  const tooltipWidth = 250; // This should match your min-width in CSS
-  if (rect.left + dropdownWidth + tooltipWidth > window.innerWidth) {
-    // If it would go off-screen, position it to the left of the dropdown instead
-    this.tooltipPosition.left = rect.left - tooltipWidth - 20;
-  }
-
   }
 
   hideTypeDetails() {
@@ -151,9 +149,12 @@ export class AddDiscoveryComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const select = (event.target as HTMLElement).closest('.custom-select');
-    if (!select) {
+    const tooltip = (event.target as HTMLElement).closest('.tooltip');
+    if (!select && !tooltip) {
+      this.isMissionDropdownOpen = false;
       this.isDropdownOpen = false;
+      this.activeTooltip = false;
+      this.discoveryTypeDetails = null;
     }
   }
 }
-

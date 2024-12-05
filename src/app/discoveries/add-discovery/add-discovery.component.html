@@ -8,8 +8,9 @@
         </div>
         <h1 class="banner-title">Record New Discovery</h1>
         <p class="banner-text">
-          Document your latest space findings. Each discovery contributes to our understanding 
-          of the vast cosmos and advances our mission of space exploration.
+          Document your latest space findings. Each discovery contributes to our
+          understanding of the vast cosmos and advances our mission of space
+          exploration.
         </p>
       </div>
     </div>
@@ -17,10 +18,10 @@
     <div class="card form-card">
       <div class="card-body">
         @if (errorMessage) {
-          <div class="custom-alert-danger mb-4">
-            <i class="fas fa-exclamation-circle me-2"></i>
-            {{ errorMessage }}
-          </div>
+        <div class="custom-alert-danger mb-4">
+          <i class="fas fa-exclamation-circle me-2"></i>
+          {{ errorMessage }}
+        </div>
         }
 
         <form [formGroup]="discoveryForm" (ngSubmit)="onSubmit()">
@@ -35,12 +36,14 @@
               type="text"
               formControlName="name"
               class="form-control custom-input"
-              [class.is-invalid]="discoveryForm.get('name')?.invalid && discoveryForm.get('name')?.touched"
-            >
-            @if (discoveryForm.get('name')?.invalid && discoveryForm.get('name')?.touched) {
-              <div class="invalid-feedback">
-                Name is required
-              </div>
+              [class.is-invalid]="
+                discoveryForm.get('name')?.invalid &&
+                discoveryForm.get('name')?.touched
+              "
+            />
+            @if (discoveryForm.get('name')?.invalid &&
+            discoveryForm.get('name')?.touched) {
+            <div class="invalid-feedback">Name is required</div>
             }
           </div>
 
@@ -55,12 +58,14 @@
               formControlName="description"
               class="form-control custom-input"
               rows="4"
-              [class.is-invalid]="discoveryForm.get('description')?.invalid && discoveryForm.get('description')?.touched"
+              [class.is-invalid]="
+                discoveryForm.get('description')?.invalid &&
+                discoveryForm.get('description')?.touched
+              "
             ></textarea>
-            @if (discoveryForm.get('description')?.invalid && discoveryForm.get('description')?.touched) {
-              <div class="invalid-feedback">
-                Description is required
-              </div>
+            @if (discoveryForm.get('description')?.invalid &&
+            discoveryForm.get('description')?.touched) {
+            <div class="invalid-feedback">Description is required</div>
             }
           </div>
 
@@ -75,12 +80,14 @@
               type="text"
               formControlName="location"
               class="form-control custom-input"
-              [class.is-invalid]="discoveryForm.get('location')?.invalid && discoveryForm.get('location')?.touched"
-            >
-            @if (discoveryForm.get('location')?.invalid && discoveryForm.get('location')?.touched) {
-              <div class="invalid-feedback">
-                Location is required
-              </div>
+              [class.is-invalid]="
+                discoveryForm.get('location')?.invalid &&
+                discoveryForm.get('location')?.touched
+              "
+            />
+            @if (discoveryForm.get('location')?.invalid &&
+            discoveryForm.get('location')?.touched) {
+            <div class="invalid-feedback">Location is required</div>
             }
           </div>
 
@@ -90,22 +97,35 @@
               <i class="fas fa-rocket text-primary me-2"></i>
               Mission
             </label>
-            <select
-              id="missionId"
-              formControlName="missionId"
-              class="form-select custom-select"
-              [class.is-invalid]="discoveryForm.get('missionId')?.invalid && discoveryForm.get('missionId')?.touched"
-            >
-              <option value="">Select a mission...</option>
-              @for (mission of missions; track mission.id) {
+            <div class="select-wrapper">
+              <!-- Hidden actual select for form control -->
+              <select
+                id="missionId"
+                formControlName="missionId"
+                class="visually-hidden"
+              >
+                <option value="">Select a mission...</option>
+                @for (mission of missions; track mission.id) {
                 <option [value]="mission.id">{{ mission.name }}</option>
-              }
-            </select>
-            @if (discoveryForm.get('missionId')?.invalid && discoveryForm.get('missionId')?.touched) {
-              <div class="invalid-feedback">
-                Mission selection is required
+                }
+              </select>
+
+              <!-- Custom dropdown -->
+              <div class="custom-select" (click)="toggleMissionDropdown()">
+                <div class="selected-option">
+                  {{ selectedMissionName || "Select a mission..." }}
+                </div>
+                @if (isMissionDropdownOpen) {
+                <div class="options-list">
+                  @for (mission of missions; track mission.id) {
+                  <div class="option" (click)="selectMission(mission)">
+                    {{ mission.name }}
+                  </div>
+                  }
+                </div>
+                }
               </div>
-            }
+            </div>
           </div>
 
           <!-- Discovery Type Selection -->
@@ -123,62 +143,60 @@
               >
                 <option value="">Select a discovery type...</option>
                 @for (type of discoveryTypes; track type.id) {
-                  <option [value]="type.id">{{ type.name }}</option>
+                <option [value]="type.id">{{ type.name }}</option>
                 }
               </select>
-          
+
               <!-- Custom dropdown -->
               <div class="custom-select" (click)="toggleDropdown()">
                 <div class="selected-option">
-                  {{ selectedTypeName || 'Select a discovery type...' }}
+                  {{ selectedTypeName || "Select a discovery type..." }}
                 </div>
                 @if (isDropdownOpen) {
-                  <div class="options-list">
-                    @for (type of discoveryTypes; track type.id) {
-                      <div 
-                        class="option"
-                        (mouseenter)="showTypeDetails(type, $event)"
-                        (mouseleave)="hideTypeDetails()"
-                        (click)="selectOption(type)"
-                      >
-                        {{ type.name }}
-                      </div>
-                    }
+                <div class="options-list">
+                  @for (type of discoveryTypes; track type.id) {
+                  <div
+                    class="option"
+                    (mouseenter)="showTypeDetails(type, $event)"
+                    (mouseleave)="hideTypeDetails()"
+                    (click)="selectOption(type)"
+                  >
+                    {{ type.name }}
                   </div>
+                  }
+                </div>
                 }
-          
+
                 <!-- Tooltip -->
                 @if (activeTooltip && discoveryTypeDetails) {
-                  <div class="type-tooltip">
-                    <h4>{{ discoveryTypeDetails.name }}</h4>
-                    <p>{{ discoveryTypeDetails.description }}</p>
-                  </div>
+                <div class="type-tooltip">
+                  <h4>{{ discoveryTypeDetails.name }}</h4>
+                  <p>{{ discoveryTypeDetails.description }}</p>
+                </div>
                 }
               </div>
             </div>
           </div>
-          
-              <!-- @if (discoveryForm.get('discoveryTypeId')?.invalid && discoveryForm.get('discoveryTypeId')?.touched) {
+
+          @if (discoveryForm.get('discoveryTypeId')?.invalid && discoveryForm.get('discoveryTypeId')?.touched) {
                 <div class="invalid-feedback">
                   Discovery type selection is required
                 </div>
               }
-            </div>
-          </div> -->
 
           <!-- Button Group -->
           <div class="button-group">
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               class="btn custom-btn-primary"
               [disabled]="discoveryForm.invalid || isSubmitting"
             >
               <i class="fas fa-save me-2"></i>
-              {{ isSubmitting ? 'Creating...' : 'Create Discovery' }}
+              {{ isSubmitting ? "Creating..." : "Create Discovery" }}
             </button>
-            <button 
-              type="button" 
-              class="btn custom-btn-secondary" 
+            <button
+              type="button"
+              class="btn custom-btn-secondary"
               (click)="onCancel()"
             >
               <i class="fas fa-times me-2"></i>
@@ -190,103 +208,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="container">
-    <h2>Add New Discovery</h2>
-  
-    @if (errorMessage) {
-      <div class="error-message">{{ errorMessage }}</div>
-    }
-  
-    <form [formGroup]="discoveryForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input
-          id="name"
-          type="text"
-          formControlName="name"
-          class="form-control"
-        >
-        @if (discoveryForm.get('name')?.invalid && discoveryForm.get('name')?.touched) {
-          <div class="error-message">Name is required</div>
-        }
-      </div>
-  
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea
-          id="description"
-          formControlName="description"
-          class="form-control"
-          rows="4"
-        ></textarea>
-        @if (discoveryForm.get('description')?.invalid && discoveryForm.get('description')?.touched) {
-          <div class="error-message">Description is required</div>
-        }
-      </div>
-  
-      <div class="form-group">
-        <label for="location">Location</label>
-        <input
-          id="location"
-          type="text"
-          formControlName="location"
-          class="form-control"
-        >
-        @if (discoveryForm.get('location')?.invalid && discoveryForm.get('location')?.touched) {
-          <div class="error-message">Location is required</div>
-        }
-      </div>
-  
-      <div class="form-group">
-        <label for="missionId">Mission</label>
-        <select
-          id="missionId"
-          formControlName="missionId"
-          class="form-control"
-        >
-          <option value="">Select a mission...</option>
-          @for (mission of missions; track mission.id) {
-            <option [value]="mission.id">{{ mission.name }}</option>
-          }
-        </select>
-        @if (discoveryForm.get('missionId')?.invalid && discoveryForm.get('missionId')?.touched) {
-          <div class="error-message">Mission selection is required</div>
-        }
-      </div>
-  
-      <div class="form-group">
-        <label for="discoveryTypeId">Discovery Type</label>
-        <select
-          id="discoveryTypeId"
-          formControlName="discoveryTypeId"
-          class="form-control"
-        >
-          <option value="">Select a discovery type...</option>
-          @for (type of discoveryTypes; track type.id) {
-            <option [value]="type.id">{{ type.name }}</option>
-          }
-        </select>
-        @if (discoveryForm.get('discoveryTypeId')?.invalid && discoveryForm.get('discoveryTypeId')?.touched) {
-          <div class="error-message">Discovery type selection is required</div>
-        }
-      </div>
-  
-      <div class="button-group">
-        <button 
-          type="submit" 
-          class="btn btn-primary"
-          [disabled]="discoveryForm.invalid || isSubmitting"
-        >
-          {{ isSubmitting ? 'Creating...' : 'Create Discovery' }}
-        </button>
-        <button 
-          type="button" 
-          class="btn btn-secondary" 
-          (click)="onCancel()"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div> -->
