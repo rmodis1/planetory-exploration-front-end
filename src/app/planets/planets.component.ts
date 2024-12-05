@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FetchPlanetsService } from '../services/fetch-planets.service';
 
 @Component({
   selector: 'app-planets',
@@ -14,9 +15,10 @@ export class PlanetsComponent implements OnInit {
   planetControl = new FormControl<number | null>(null);
   planets: any = { data: []};
   planetDetails: any = null;
+  private fetchPlanetsService = inject(FetchPlanetsService);
 
   ngOnInit(): void {
-    this.http.get('http://localhost:5125/api/planet/dropdown').subscribe({
+    this.fetchPlanetsService.getPlanets().subscribe({
       next: (response) => (this.planets = response),
       error: (error) => console.error(error.message),
       complete: () => console.log('Request has completed'),
@@ -37,7 +39,7 @@ export class PlanetsComponent implements OnInit {
     });
   }
 
-  trackByPlanetId(id: number, planet: any): number {
+  trackByPlanetId(planet: any): number {
     return planet.id;
   }
 }

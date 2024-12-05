@@ -1,4 +1,127 @@
-.container {
+.space-background {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  padding: 20px;
+}
+
+.main-card {
+  background-color: rgba(33, 37, 41, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.mission-item {
+  background-color: rgba(33, 37, 41, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease-in-out;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.mission-item:hover {
+  transform: translateY(-2px);
+}
+
+.mission-content h2 {
+  color: #60a5fa;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.mission-details {
+  margin: 1rem 0;
+}
+
+.mission-details p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.mission-details i {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.mission-details strong {
+  margin-right: 8px;
+  color: #60a5fa;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.custom-btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+.custom-btn-danger {
+  background-color: rgba(220, 53, 69, 0.8);
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-btn-danger:hover {
+  background-color: rgba(220, 53, 69, 1);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .header-title {
+    font-size: 2rem;
+  }
+
+  .mission-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group .btn {
+    width: 100%;
+  }
+}
+
+/* .container {
   margin-top: 50px;
 }
 
@@ -56,4 +179,4 @@ h1 {
 
 .button-group .btn {
   flex: none;
-}
+} */

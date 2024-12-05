@@ -1,4 +1,58 @@
-<div class="container" style="margin-top: 50px">
+<div class="space-background">
+  <div class="container py-5">
+    <div class="card mission-card main-card">
+      <div class="card-header text-center border-bottom-0 pt-4">
+        <h1 class="header-title mb-0">
+          <i class="fas fa-tasks text-primary me-2"></i>
+          Completed Missions
+        </h1>
+      </div>
+
+      <div class="card-body">
+        @for(mission of missions.data; track mission.id) {
+        <div class="mission-item">
+          <div class="mission-content">
+            <h2>
+              <i class="fas fa-rocket text-primary me-2"></i>
+              {{ mission.name }}
+            </h2>
+            
+            <div class="mission-details">
+              <p>
+                <i class="fas fa-calendar text-primary me-2"></i>
+                <strong>Date:</strong> {{ mission.date | date : "longDate" }}
+              </p>
+              <p>
+                <i class="fas fa-file-alt text-primary me-2"></i>
+                <strong>Description:</strong> {{ mission.description }}
+              </p>
+            </div>
+
+            <div class="button-group">
+              <button
+                class="btn custom-btn-primary"
+                [routerLink]="['/missions/update', mission.id]"
+              >
+                <i class="fas fa-edit me-2"></i>
+                Update Mission
+              </button>
+              <button
+                class="btn custom-btn-danger"
+                [routerLink]="['/missions/delete', mission.id]"
+              >
+                <i class="fas fa-trash-alt me-2"></i>
+                Delete Mission
+              </button>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container" style="margin-top: 50px">
   <h1>Completed Missions</h1>
 
   @for(mission of missions.data; track mission.id) {
@@ -23,4 +77,4 @@
     </div>
   </div>
   }
-</div>
+</div> -->

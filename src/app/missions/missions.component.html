@@ -1,8 +1,136 @@
-<div class="container mt-5">
+<div class="space-background">
+  <div class="container py-5">
+    <div class="card mission-card">
+      <div class="card-header text-center border-bottom-0 pt-4">
+        <h2 class="mb-0">
+          <a routerLink="/missions/list" class="nav-link space-link">
+            <i class="fas fa-history text-primary me-2"></i>
+            See Previous Missions
+          </a>
+        </h2>
+      </div>
+      
+      <div class="card-body">
+        <h2 class="text-center mb-4">
+          <i class="fas fa-rocket text-primary me-2"></i>
+          Create New Mission
+        </h2>
+
+        <form [formGroup]="missionForm" (ngSubmit)="onSubmit()">
+          <!-- Mission Name -->
+          <div class="mb-4">
+            <label for="name" class="form-label">
+              <i class="fas fa-flag text-primary me-2"></i>
+              Mission Name:
+            </label>
+            <input 
+              type="text" 
+              id="name" 
+              formControlName="name" 
+              class="form-control custom-input" 
+              [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+            >
+            @if (name.invalid && (name.dirty || name.touched)) {
+              <div class="invalid-feedback">
+                Mission name is required.
+              </div>
+            }
+          </div>
+
+          <!-- Date -->
+          <div class="mb-4">
+            <label for="date" class="form-label">
+              <i class="fas fa-calendar text-primary me-2"></i>
+              Date:
+            </label>
+            <input 
+              type="date" 
+              id="date" 
+              formControlName="date" 
+              class="form-control custom-input" 
+              [class.is-invalid]="date.invalid && (date.dirty || date.touched)"
+            >
+            @if (date.invalid && (date.dirty || date.touched)) {
+              <div class="invalid-feedback">
+                Date is required.
+              </div>
+            }
+          </div>
+
+          <!-- Description -->
+          <div class="mb-4">
+            <label for="description" class="form-label">
+              <i class="fas fa-file-alt text-primary me-2"></i>
+              Description:
+            </label>
+            <textarea 
+              id="description" 
+              formControlName="description" 
+              class="form-control custom-input" 
+              rows="4"
+              [class.is-invalid]="description.invalid && (description.dirty || description.touched)"
+            ></textarea>
+            @if (description.invalid && (description.dirty || description.touched)) {
+              <div class="invalid-feedback">
+                Description is required.
+              </div>
+            }
+          </div>
+
+          <!-- Planet Dropdown -->
+          <div class="mb-4">
+            <label for="planetName" class="form-label">
+              <i class="fas fa-globe text-primary me-2"></i>
+              Planet Name:
+            </label>
+            <select 
+              id="planetName" 
+              formControlName="planetId" 
+              class="form-select custom-select"
+              [class.is-invalid]="planetId.invalid && (planetId.dirty || planetId.touched)"
+            >
+              <option value="" disabled>Select a planet</option>
+              @for (planet of planets.data; track planet.id) {
+                <option [value]="planet.id">
+                  {{ planet.name }}
+                </option>
+              }
+            </select>
+            @if (planetId.invalid && (planetId.dirty || planetId.touched)) {
+              <div class="invalid-feedback">
+                Please select a planet.
+              </div>
+            }
+          </div>
+
+          <!-- Submit Error -->
+          @if (submitError) {
+            <div class="alert custom-alert-danger">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              {{ submitError }}
+            </div>
+          }
+
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            class="btn custom-btn-primary w-100" 
+            [disabled]="missionForm.invalid || isSubmitting"
+          >
+            <i class="fas fa-paper-plane me-2"></i>
+            {{ isSubmitting ? 'Creating...' : 'Create Mission' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container mt-5">
   <h2 class="mb-2"><a routerLink="/missions/list" class="nav-link" routerLinkActive="router-link-active">See Previous Missions</a></h2>
   <h2 class="mt-4">Create New Mission</h2>
   <form [formGroup]="missionForm" (ngSubmit)="onSubmit()">
-    <!-- Mission Name -->
+    Mission Name
     <div class="mb-3">
       <label for="name" class="form-label">Mission Name:</label>
       <input 
@@ -19,7 +147,7 @@
       }
     </div>
 
-    <!-- Date -->
+    Date
     <div class="mb-3">
       <label for="date" class="form-label">Date:</label>
       <input 
@@ -36,7 +164,7 @@
       }
     </div>
 
-    <!-- Description -->
+    Description
     <div class="mb-3">
       <label for="description" class="form-label">Description:</label>
       <textarea 
@@ -52,7 +180,7 @@
       }
     </div>
 
-    <!-- Planet Dropdown -->
+    Planet Dropdown
     <div class="mb-3">
       <label for="planetName" class="form-label">Planet Name:</label>
       <select 
@@ -75,14 +203,14 @@
       }
     </div>
 
-    <!-- Submit Error -->
+    Submit Error
     @if (submitError) {
       <div class="alert alert-danger">
         {{ submitError }}
       </div>
     }
 
-    <!-- Submit Button -->
+    Submit Button
     <button 
       type="submit" 
       class="btn btn-primary" 
@@ -91,4 +219,4 @@
       {{ isSubmitting ? 'Creating...' : 'Create Mission' }}
     </button>
   </form>
-</div>
+</div> -->

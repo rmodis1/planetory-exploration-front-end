@@ -1,4 +1,74 @@
-<div class="container" style="margin-top: 50px">
+<div class="space-background">
+  <div class="container py-5">
+    <div class="card planet-card">
+      <div class="card-header text-center border-bottom-0 pt-4">
+        <h2 class="mb-0">
+          <i class="fas fa-globe text-primary me-2"></i>
+          Planetary Database
+        </h2>
+      </div>
+      
+      <div class="card-body">
+        <div class="form-group mb-4">
+          <label for="planetSelect" class="form-label">Select a Planet</label>
+          <select 
+            id="planetSelect"
+            [formControl]="planetControl"
+            class="form-select custom-select"
+          >
+            <option value="">Choose a planet...</option>
+            @for (planet of planets.data; track planet.id) {
+              <option [value]="planet.id">{{ planet.name }}</option>
+            }
+          </select>
+        </div>
+
+        @if (planetDetails) {
+          <div class="planet-details">
+            <h3 class="details-header mb-4">
+              <i class="fas fa-globe text-primary me-2"></i>
+              Planet Details
+            </h3>
+            
+            <div class="details-grid">
+              <div class="detail-item">
+                <i class="fas fa-star text-primary"></i>
+                <span class="detail-label">Name:</span>
+                <span class="detail-value">{{ planetDetails.data.name }}</span>
+              </div>
+              
+              <div class="detail-item">
+                <i class="fas fa-globe text-purple"></i>
+                <span class="detail-label">Type:</span>
+                <span class="detail-value">{{ planetDetails.data.type }}</span>
+              </div>
+              
+              <div class="detail-item">
+                <i class="fas fa-temperature-high text-danger"></i>
+                <span class="detail-label">Climate:</span>
+                <span class="detail-value">{{ planetDetails.data.climate }}</span>
+              </div>
+              
+              <div class="detail-item">
+                <i class="fas fa-mountain text-success"></i>
+                <span class="detail-label">Terrain:</span>
+                <span class="detail-value">{{ planetDetails.data.terrain }}</span>
+              </div>
+              
+              <div class="detail-item">
+                <i class="fas fa-users text-warning"></i>
+                <span class="detail-label">Population:</span>
+                <span class="detail-value">{{ planetDetails.data.population }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container" style="margin-top: 50px">
   <h2>Planets</h2>
   <div class="form-group">
     <label for="planetSelect">Select a Planet:</label>
@@ -21,4 +91,4 @@
           <li><strong>Population:</strong> {{ planetDetails.data.population }}</li>
         </ul>
       </div>
-  }
+  } -->
