@@ -12,7 +12,7 @@
   align-items: center;
   color: white;
   overflow: hidden;
-  background-color: #1a1a2e; /* Space-themed background color */
+  background-color: #1a1a2e; 
 }
 
 .background-image {
@@ -24,7 +24,7 @@
   min-height: 100%;
   width: auto;
   height: auto;
-  max-width: 1920px; /* or whatever width maintains good image quality */
+  max-width: 1920px;
   object-fit: cover;
   z-index: 0;
 }
