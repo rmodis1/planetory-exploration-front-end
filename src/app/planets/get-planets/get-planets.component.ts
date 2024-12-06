@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { FetchPlanetsService } from '../services/fetch-planets.service';
-import { RouterModule } from '@angular/router';
+import { FetchPlanetsService } from '../../services/fetch-planets.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-planets',
+  selector: 'app-get-planets',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule],
-  templateUrl: './planets.component.html',
-  styleUrl: './planets.component.css'
+  imports: [RouterModule, ReactiveFormsModule],
+  templateUrl: './get-planets.component.html',
+  styleUrl: './get-planets.component.css'
 })
-export class PlanetsComponent implements OnInit {
+export class GetPlanetsComponent implements OnInit {
   http = inject(HttpClient);
   planetControl = new FormControl<number | null>(null);
   planets: any = { data: []};

@@ -1,0 +1,138 @@
+<div class="space-background">
+    <div class="container py-5">
+      <!-- Banner Section -->
+      <div class="banner-card mb-4">
+        <div class="banner-content">
+          <div class="banner-icon">
+            <i class="fas fa-globe text-primary"></i>
+          </div>
+          <h1 class="banner-title">Add New Planet</h1>
+          <p class="banner-text">
+            Expand our database by adding new celestial bodies. Each planet contributes to our understanding 
+            of the vast cosmos and enriches our exploration potential.
+          </p>
+        </div>
+      </div>
+  
+      <div class="card form-card">
+        <div class="card-body">
+          <form [formGroup]="planetForm" (ngSubmit)="onSubmit()">
+            <!-- Name Field -->
+            <div class="form-group mb-4">
+              <label for="name" class="form-label">
+                <i class="fas fa-signature text-primary me-2"></i>
+                Planet Name
+              </label>
+              <input 
+                id="name" 
+                formControlName="name" 
+                class="form-control custom-input"
+                [class.is-invalid]="planetForm.get('name')?.errors?.['required'] && planetForm.get('name')?.touched"
+              />
+              @if (planetForm.get('name')?.errors?.['required'] && planetForm.get('name')?.touched) {
+                <div class="invalid-feedback">
+                  Name is required
+                </div>
+              }
+            </div>
+  
+            <!-- Type Field -->
+            <div class="form-group mb-4">
+              <label for="type" class="form-label">
+                <i class="fas fa-globe text-primary me-2"></i>
+                Planet Type
+              </label>
+              <input 
+                id="type" 
+                formControlName="type" 
+                class="form-control custom-input"
+                [class.is-invalid]="planetForm.get('type')?.errors?.['required'] && planetForm.get('type')?.touched"
+              />
+              @if (planetForm.get('type')?.errors?.['required'] && planetForm.get('type')?.touched) {
+                <div class="invalid-feedback">
+                  Type is required
+                </div>
+              }
+            </div>
+  
+            <!-- Climate Field -->
+            <div class="form-group mb-4">
+              <label for="climate" class="form-label">
+                <i class="fas fa-temperature-high text-primary me-2"></i>
+                Climate
+              </label>
+              <input 
+                id="climate" 
+                formControlName="climate" 
+                class="form-control custom-input"
+                [class.is-invalid]="planetForm.get('climate')?.errors?.['required'] && planetForm.get('climate')?.touched"
+              />
+              @if (planetForm.get('climate')?.errors?.['required'] && planetForm.get('climate')?.touched) {
+                <div class="invalid-feedback">
+                  Climate is required
+                </div>
+              }
+            </div>
+  
+            <!-- Terrain Field -->
+            <div class="form-group mb-4">
+              <label for="terrain" class="form-label">
+                <i class="fas fa-mountain text-primary me-2"></i>
+                Terrain
+              </label>
+              <input 
+                id="terrain" 
+                formControlName="terrain" 
+                class="form-control custom-input"
+                [class.is-invalid]="planetForm.get('terrain')?.errors?.['required'] && planetForm.get('terrain')?.touched"
+              />
+              @if (planetForm.get('terrain')?.errors?.['required'] && planetForm.get('terrain')?.touched) {
+                <div class="invalid-feedback">
+                  Terrain is required
+                </div>
+              }
+            </div>
+  
+            <!-- Population Field -->
+            <div class="form-group mb-4">
+              <label for="population" class="form-label">
+                <i class="fas fa-users text-primary me-2"></i>
+                Population
+              </label>
+              <input 
+                id="population" 
+                formControlName="population" 
+                class="form-control custom-input"
+                [class.is-invalid]="planetForm.get('population')?.errors?.['required'] && planetForm.get('population')?.touched"
+              />
+              @if (planetForm.get('population')?.errors?.['required'] && planetForm.get('population')?.touched) {
+                <div class="invalid-feedback">
+                  Population is required
+                </div>
+              }
+            </div>
+  
+            @if (submitError) {
+              <div class="custom-alert-danger mb-4">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                {{ submitError }}
+              </div>
+            }
+  
+            <button 
+              type="submit" 
+              class="btn custom-btn-primary w-100" 
+              [disabled]="isSubmitting"
+            >
+              <i class="fas fa-plus-circle me-2"></i>
+              @if (isSubmitting) {
+                <span>Adding Planet...</span>
+              } @else {
+                <span>Add Planet</span>
+              }
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

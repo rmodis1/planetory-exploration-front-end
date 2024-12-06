@@ -1,16 +1,54 @@
 <div class="space-background">
   <div class="container py-5">
-    <div class="card planet-card">
-      <div class="card-header text-center border-bottom-0 pt-4">
-        <h2 class="mb-0">
-          <i class="fas fa-globe text-primary me-2"></i>
-          Planetary Database
-        </h2>
+    <!-- Banner Section -->
+    <div class="banner-card mb-4">
+      <div class="banner-content">
+        <div class="banner-icon">
+          <i class="fas fa-globe text-primary"></i>
+        </div>
+        <h1 class="banner-title">Planetary Database</h1>
+        <p class="banner-text">
+          Explore our catalog of celestial bodies or contribute by adding new planets to our database. 
+          Each planet holds unique characteristics waiting to be discovered.
+        </p>
       </div>
-      
+    </div>
+
+    <!-- Navigation Card -->
+    <div class="card nav-card">
+      <div class="card-body text-center">
+        <div class="nav-section">
+          <a class="space-link discover-link" routerLink="/planets/get-planets" routerLinkActive="active">
+            <i class="fas fa-search text-primary me-2"></i>
+            <span class="link-text">View Planet Catalog</span>
+            <i class="fas fa-chevron-right ms-2 arrow-icon"></i>
+          </a>
+        </div>
+        
+        <div class="nav-divider">
+          <div class="divider-line"></div>
+          <i class="fas fa-star text-primary"></i>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="nav-section">
+          <a class="space-link create-link" routerLink="/planets/add-planet" routerLinkActive="active">
+            <i class="fas fa-plus-circle me-2"></i>
+            <span class="link-text">Add New Planet</span>
+            <i class="fas fa-chevron-right ms-2 arrow-icon"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Planet Details Card -->
+    <!-- <div class="card planet-card mt-4">
       <div class="card-body">
         <div class="form-group mb-4">
-          <label for="planetSelect" class="form-label">Select a Planet</label>
+          <label for="planetSelect" class="form-label">
+            <i class="fas fa-globe text-primary me-2"></i>
+            Select a Planet
+          </label>
           <select 
             id="planetSelect"
             [formControl]="planetControl"
@@ -32,33 +70,43 @@
             
             <div class="details-grid">
               <div class="detail-item">
-                <i class="fas fa-star text-primary"></i>
-                <span class="detail-label">Name:</span>
-                <span class="detail-value">{{ planetDetails.data.name }}</span>
+                <div class="detail-icon">
+                  <i class="fas fa-star text-primary"></i>
+                </div>
+                <div class="detail-label">Name:</div>
+                <div class="detail-value">{{ planetDetails.data.name }}</div>
               </div>
               
               <div class="detail-item">
-                <i class="fas fa-globe text-purple"></i>
-                <span class="detail-label">Type:</span>
-                <span class="detail-value">{{ planetDetails.data.type }}</span>
+                <div class="detail-icon">
+                  <i class="fas fa-globe text-purple"></i>
+                </div>
+                <div class="detail-label">Type:</div>
+                <div class="detail-value">{{ planetDetails.data.type }}</div>
               </div>
               
               <div class="detail-item">
-                <i class="fas fa-temperature-high text-danger"></i>
-                <span class="detail-label">Climate:</span>
-                <span class="detail-value">{{ planetDetails.data.climate }}</span>
+                <div class="detail-icon">
+                  <i class="fas fa-temperature-high text-danger"></i>
+                </div>
+                <div class="detail-label">Climate:</div>
+                <div class="detail-value">{{ planetDetails.data.climate }}</div>
               </div>
               
               <div class="detail-item">
-                <i class="fas fa-mountain text-success"></i>
-                <span class="detail-label">Terrain:</span>
-                <span class="detail-value">{{ planetDetails.data.terrain }}</span>
+                <div class="detail-icon">
+                  <i class="fas fa-mountain text-success"></i>
+                </div>
+                <div class="detail-label">Terrain:</div>
+                <div class="detail-value">{{ planetDetails.data.terrain }}</div>
               </div>
               
               <div class="detail-item">
-                <i class="fas fa-users text-warning"></i>
-                <span class="detail-label">Population:</span>
-                <span class="detail-value">{{ planetDetails.data.population }}</span>
+                <div class="detail-icon">
+                  <i class="fas fa-users text-warning"></i>
+                </div>
+                <div class="detail-label">Population:</div>
+                <div class="detail-value">{{ planetDetails.data.population }}</div>
               </div>
             </div>
           </div>
@@ -66,4 +114,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

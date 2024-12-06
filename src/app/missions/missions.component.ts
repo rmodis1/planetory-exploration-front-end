@@ -84,7 +84,6 @@ export class MissionsComponent implements OnInit {
   }
 
   onSubmit() {
-    // Reset previous error state
     this.submitError = null;
   
     if (this.missionForm.valid) {

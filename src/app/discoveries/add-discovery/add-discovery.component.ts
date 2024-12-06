@@ -32,7 +32,6 @@ export class AddDiscoveryComponent implements OnInit {
   selectedMissionName = '';
   selectedTypeName = '';
   activeTooltip = false;
-  tooltipPosition = { top: 0, left: 0 };
 
   constructor() {
     this.discoveryForm = this.formBuilder.group({
