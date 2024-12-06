@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { FetchPlanetsService } from '../../services/fetch-planets.service';
 
 @Component({
   selector: 'app-update-planet',
@@ -16,6 +17,7 @@ export class UpdatePlanetComponent implements OnInit {
   private http = inject(HttpClient);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private planetService = inject(FetchPlanetsService);
 
   planetForm: FormGroup | null = null;
   isSubmitting = false;
@@ -31,8 +33,7 @@ export class UpdatePlanetComponent implements OnInit {
   }
 
   private fetchPlanetDetails(id: string) {
-    this.http.get<any>(`http://localhost:5125/api/planet/${id}`)
-      .subscribe({
+    this.planetService.getPlanetById(id).subscribe({
         next: (response) => {
           this.initializeForm(response.data);
         },
