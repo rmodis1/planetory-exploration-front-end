@@ -39,8 +39,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
    cd planetary-exploration
 
 2. Install dependencies
+    ```bash
     npm install
 3. Start the development server
+    ```bash
     ng serve
 4. Navigate to http://localhost:4200/ in your browser
 
