@@ -54,7 +54,7 @@ Ensure the API is running before starting the Angular application.
 
 Key endpoints:
 
-/api/mission - Mission management
-/api/planet - Planet database
-/api/discovery - Discovery tracking
+- /api/mission - Mission management
+- /api/planet - Planet database
+- /api/discovery - Discovery tracking
 
