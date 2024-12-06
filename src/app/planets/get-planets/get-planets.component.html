@@ -1,93 +1,109 @@
 <div class="space-background">
-  <div class="container py-5">
-    <!-- Banner Section -->
-    <div class="banner-card mb-4">
-      <div class="banner-content">
-        <div class="banner-icon">
-          <i class="fas fa-globe text-primary"></i>
+    <div class="container py-5">
+      <!-- Banner Section -->
+      <div class="banner-card mb-4">
+        <div class="banner-content">
+          <div class="banner-icon">
+            <i class="fas fa-globe text-primary"></i>
+          </div>
+          <h1 class="banner-title">Planet Details</h1>
+          <p class="banner-text">
+            Explore detailed information about each planet in our database.
+            Discover unique characteristics from climate patterns to population
+            statistics.
+          </p>
         </div>
-        <h1 class="banner-title">Planet Details</h1>
-        <p class="banner-text">
-          Explore detailed information about each planet in our database.
-          Discover unique characteristics from climate patterns to population
-          statistics.
-        </p>
       </div>
-    </div>
-
-    <!-- Planet Details Card -->
-    <div class="card planet-card mt-4">
-      <div class="card-body">
-        <div class="form-group mb-4">
-          <label for="planetSelect" class="form-label">
-            <i class="fas fa-globe text-primary me-2"></i>
-            Select a Planet
-          </label>
-          <select
-            id="planetSelect"
-            [formControl]="planetControl"
-            class="form-select custom-select"
-          >
-            <option value="">Choose a planet...</option>
-            @for (planet of planets.data; track planet.id) {
-            <option [value]="planet.id">{{ planet.name }}</option>
-            }
-          </select>
-        </div>
-
-        @if (planetDetails) {
-        <div class="planet-details">
-          <h3 class="details-header mb-4">
-            <i class="fas fa-globe text-primary me-2"></i>
-            Planet Details
-          </h3>
-
-          <div class="details-grid">
-            <div class="detail-item">
-              <div class="detail-icon">
-                <i class="fas fa-star text-primary"></i>
+  
+      <!-- Planet Details Card -->
+      <div class="card planet-card mt-4">
+        <div class="card-body">
+          <div class="form-group mb-4">
+            <label for="planetSelect" class="form-label">
+              <i class="fas fa-globe text-primary me-2"></i>
+              Select a Planet
+            </label>
+            <select
+              id="planetSelect"
+              [formControl]="planetControl"
+              class="form-select custom-select"
+            >
+              <option value="">Choose a planet...</option>
+              @for (planet of planets.data; track planet.id) {
+              <option [value]="planet.id">{{ planet.name }}</option>
+              }
+            </select>
+          </div>
+  
+          @if (planetDetails) {
+          <div class="planet-details">
+            <h3 class="details-header mb-4">
+              <i class="fas fa-globe text-primary me-2"></i>
+              Planet Details
+            </h3>
+            <div class="details-grid mb-4">
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fas fa-star text-primary"></i>
+                </div>
+                <div class="detail-label">Name:</div>
+                <div class="detail-value">{{ planetDetails.data.name }}</div>
               </div>
-              <div class="detail-label">Name:</div>
-              <div class="detail-value">{{ planetDetails.data.name }}</div>
+  
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fas fa-globe text-purple"></i>
+                </div>
+                <div class="detail-label">Type:</div>
+                <div class="detail-value">{{ planetDetails.data.type }}</div>
+              </div>
+  
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fas fa-temperature-high text-danger"></i>
+                </div>
+                <div class="detail-label">Climate:</div>
+                <div class="detail-value">{{ planetDetails.data.climate }}</div>
+              </div>
+  
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fas fa-mountain text-success"></i>
+                </div>
+                <div class="detail-label">Terrain:</div>
+                <div class="detail-value">{{ planetDetails.data.terrain }}</div>
+              </div>
+  
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fas fa-users text-warning"></i>
+                </div>
+                <div class="detail-label">Population:</div>
+                <div class="detail-value">
+                  {{ planetDetails.data.population }}
+                </div>
+              </div>
             </div>
-
-            <div class="detail-item">
-              <div class="detail-icon">
-                <i class="fas fa-globe text-purple"></i>
-              </div>
-              <div class="detail-label">Type:</div>
-              <div class="detail-value">{{ planetDetails.data.type }}</div>
-            </div>
-
-            <div class="detail-item">
-              <div class="detail-icon">
-                <i class="fas fa-temperature-high text-danger"></i>
-              </div>
-              <div class="detail-label">Climate:</div>
-              <div class="detail-value">{{ planetDetails.data.climate }}</div>
-            </div>
-
-            <div class="detail-item">
-              <div class="detail-icon">
-                <i class="fas fa-mountain text-success"></i>
-              </div>
-              <div class="detail-label">Terrain:</div>
-              <div class="detail-value">{{ planetDetails.data.terrain }}</div>
-            </div>
-
-            <div class="detail-item">
-              <div class="detail-icon">
-                <i class="fas fa-users text-warning"></i>
-              </div>
-              <div class="detail-label">Population:</div>
-              <div class="detail-value">
-                {{ planetDetails.data.population }}
-              </div>
+            
+            <div class="button-group">
+              <button 
+                class="btn custom-btn-primary"
+                [routerLink]="['/planets/update', planetDetails.data.id]"
+              >
+                <i class="fas fa-edit me-2"></i>
+                Update
+              </button>
+              <button 
+                class="btn custom-btn-danger"
+                [routerLink]="['/planets/delete', planetDetails.data.id]"
+              >
+                <i class="fas fa-trash-alt me-2"></i>
+                Delete
+              </button>
             </div>
           </div>
+          }
         </div>
-        }
       </div>
     </div>
   </div>
-</div>
