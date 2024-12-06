@@ -1,19 +1,58 @@
 # Planetary Exploration Front-End
 
+A web application for managing space missions, discovering planets, and tracking celestial discoveries. Built with Angular, this application provides a modern interface for space exploration management.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Mission Management**
+  - Create new missions
+  - View mission details
+  - Update existing missions
+  - Delete missions
 
-## Code scaffolding
+- **Planet Database**
+  - View detailed planet information
+  - Add new planets
+  - Update planet details
+  - Delete planets from database
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Discovery Tracking**
+  - Record new discoveries
+  - Associate discoveries with missions
+  - Categorize discoveries by type
+  - Manage discovery details
 
-## Build
+## Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Node.js (version 16.x or higher)
+- npm (version 8.x or higher)
+- Angular CLI (version 17.x)
+- .NET Core API (running on localhost:5125)
 
-## Further help
+## Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Clone the repository
+   ```bash
+   git clone [repository-url]
+   cd planetary-exploration
+
+2. Install dependencies
+    npm install
+3. Start the development server
+    ng serve
+4. Navigate to http://localhost:4200/ in your browser
+
+## API Integration
+
+The application connects to a .NET Core backend running on http://localhost:5125. 
+
+Ensure the API is running before starting the Angular application.
+
+Key endpoints:
+
+/api/mission - Mission management
+/api/planet - Planet database
+/api/discovery - Discovery tracking
+
