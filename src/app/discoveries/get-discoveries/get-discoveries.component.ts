@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Mission } from '../../interfaces/mission';
 import { Discovery } from '../../interfaces/discovery';
 import { Router, RouterModule } from '@angular/router';
+import { FetchMissionsService } from '../../services/fetch-missions.service';
 
 @Component({
   selector: 'app-get-discoveries',
@@ -16,6 +17,7 @@ import { Router, RouterModule } from '@angular/router';
 export class GetDiscoveriesComponent implements OnInit {
   private http = inject(HttpClient);
   private router = inject(Router);
+  private fetchMissionsService = inject(FetchMissionsService);
   
   
   missions: Mission[] = [];
@@ -29,7 +31,7 @@ export class GetDiscoveriesComponent implements OnInit {
   }
 
   private fetchMissions() {
-    this.http.get<{ data: Mission[] }>('http://localhost:5125/api/mission')
+    this.fetchMissionsService.getMissions()
       .subscribe({
         next: (response) => {
           this.missions = response.data;
