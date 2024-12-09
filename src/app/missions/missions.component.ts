@@ -10,8 +10,7 @@ import { catchError, of, tap } from 'rxjs';
 import { Mission } from '../interfaces/mission';
 import { FetchMissionsService } from '../services/fetch-missions.service';
 import { FetchPlanetsService } from '../services/fetch-planets.service';
-import { MissionsListComponent } from "./missions-list/missions-list.component";
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-missions',
@@ -62,25 +61,33 @@ export class MissionsComponent implements OnInit {
   }
 
   fetchMissions(): void {
-    this.fetchMissionsService.getMissions().subscribe(
-      (data: any) => {
+    this.fetchMissionsService.getMissions()
+    .subscribe({
+      next: (data: any) => {
         this.missions = data;
       },
-      (error: any) => {
-        console.error('Error fetching missions', error);
+      error: (error) => {
+        console.log('Error fetching missions: ', error);
+      },
+      complete: () => {
+        console.log('Missions fetch completed');
       }
-    );
+    });
   }
 
   fetchPlanets(): void {
-    this.fetchPlanetsService.getPlanets().subscribe(
-      (data: any) => {
+    this.fetchPlanetsService.getPlanets()
+    .subscribe({
+      next: (data: any) => {
         this.planets = data;
       },
-      (error: any) => {
-        console.error('Error fetching planets', error);
+      error: (error) => {
+        console.log('Error fetching planets: ', error);
+      },
+      complete: () => {
+        console.log('Planets fetch completed');
       }
-    );
+    });
   }
 
   onSubmit() {

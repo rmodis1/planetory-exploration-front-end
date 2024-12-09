@@ -19,7 +19,6 @@ export class UpdateDiscoveryComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private http = inject(HttpClient);
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
   private discoveryTypeService = inject(DiscoveryTypeService);
   private fetchMissionService = inject(FetchMissionsService);
 

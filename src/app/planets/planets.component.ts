@@ -33,7 +33,8 @@ export class PlanetsComponent implements OnInit {
   }
 
   fetchPlanetDetails(planetId: number): void {
-    this.http.get(`http://localhost:5125/api/planet/${planetId}`).subscribe({
+    this.fetchPlanetsService.getPlanetById(planetId)
+    .subscribe({
       next: (response) => (this.planetDetails = response),
       error: (error) => console.error(error.message),
       complete: () => console.log('Request has completed'),

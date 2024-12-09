@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FetchMissionsService } from '../../services/fetch-missions.service';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({

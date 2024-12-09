@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { GetDiscoveriesComponent } from "./get-discoveries/get-discoveries.component";
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({

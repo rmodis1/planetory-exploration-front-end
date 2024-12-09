@@ -1,5 +1,10 @@
 import { Component, inject, OnInit, HostListener } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { Mission } from '../../interfaces/mission';
@@ -12,7 +17,7 @@ import { FetchMissionsService } from '../../services/fetch-missions.service';
   standalone: true,
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './add-discovery.component.html',
-  styleUrl: './add-discovery.component.css'
+  styleUrl: './add-discovery.component.css',
 })
 export class AddDiscoveryComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
@@ -39,7 +44,7 @@ export class AddDiscoveryComponent implements OnInit {
       description: ['', Validators.required],
       location: ['', Validators.required],
       missionId: ['', Validators.required],
-      discoveryTypeId: ['', Validators.required]
+      discoveryTypeId: ['', Validators.required],
     });
   }
 
@@ -50,29 +55,27 @@ export class AddDiscoveryComponent implements OnInit {
   }
 
   private fetchMissions() {
-    this.fetchMissionService.getMissions()
-      .subscribe({
-        next: (response) => {
-          this.missions = response.data;
-        },
-        error: (error) => {
-          console.error('Error fetching missions:', error);
-          this.errorMessage = 'Failed to load missions';
-        }
-      });
+    this.fetchMissionService.getMissions().subscribe({
+      next: (response) => {
+        this.missions = response.data;
+      },
+      error: (error) => {
+        console.error('Error fetching missions:', error);
+        this.errorMessage = 'Failed to load missions';
+      },
+    });
   }
 
   private fetchDiscoveryTypes() {
-    this.discoveryTypeService.getDiscoveryTypes()
-      .subscribe({
-        next: (response) => {
-          this.discoveryTypes = response.data;
-        },
-        error: (error) => {
-          console.error('Error fetching discovery types:', error);
-          this.errorMessage = 'Failed to load discovery types';
-        }
-      });
+    this.discoveryTypeService.getDiscoveryTypes().subscribe({
+      next: (response) => {
+        this.discoveryTypes = response.data;
+      },
+      error: (error) => {
+        console.error('Error fetching discovery types:', error);
+        this.errorMessage = 'Failed to load discovery types';
+      },
+    });
   }
 
   onSubmit() {
@@ -86,10 +89,14 @@ export class AddDiscoveryComponent implements OnInit {
         discoveryTypeId: this.discoveryForm.get('discoveryTypeId')?.value,
         name: this.discoveryForm.get('name')?.value,
         description: this.discoveryForm.get('description')?.value,
-        location: this.discoveryForm.get('location')?.value
+        location: this.discoveryForm.get('location')?.value,
       };
-  
-      this.http.post(`http://localhost:5125/api/mission/${missionId}/discovery`, discoveryData)
+
+      this.http
+        .post(
+          `http://localhost:5125/api/mission/${missionId}/discovery`,
+          discoveryData
+        )
         .subscribe({
           next: () => {
             this.router.navigate(['/discoveries/get-discoveries']);
@@ -100,7 +107,7 @@ export class AddDiscoveryComponent implements OnInit {
             console.error('Error creating discovery:', error);
             this.errorMessage = 'Failed to create discovery';
             this.isSubmitting = false;
-          }
+          },
         });
     }
   }
@@ -122,12 +129,11 @@ export class AddDiscoveryComponent implements OnInit {
     }
   }
 
-
-selectMission(mission: any) {
-  this.selectedMissionName = mission.name;
-  this.discoveryForm.get('missionId')?.setValue(mission.id);
-  this.isMissionDropdownOpen = false;
-}
+  selectMission(mission: any) {
+    this.selectedMissionName = mission.name;
+    this.discoveryForm.get('missionId')?.setValue(mission.id);
+    this.isMissionDropdownOpen = false;
+  }
 
   showTypeDetails(type: any, event: MouseEvent) {
     this.discoveryTypeDetails = type;
